@@ -1,0 +1,42 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div *ngIf="loginError" class="login-error-information">Kullanıcı adi veya sifre yanlis</div>
+
+    <table>
+      <tr>
+        <td>Username</td>
+        <td><input formControlName="username" type="text" /></td>
+        <td>
+          <div
+            *ngIf="!username?.valid && (username?.dirty || username?.touched)"
+          >
+            <div [hidden]="!(username?.errors)!['required']">
+              Usernae is required
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Password</td>
+        <td><input formControlName="password" type="password" /></td>
+        <td>
+          <div
+            *ngIf="!password?.valid && (password?.dirty || password?.touched)"
+          >
+            <div [hidden]="!(password?.errors)!['required']">
+              Password is required
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <button type="submit" [disabled]="loginForm.invalid">Login</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
